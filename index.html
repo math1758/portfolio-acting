@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Porte‑folio d’acteur – Votre Nom</title>
+  <meta name="description" content="Portfolio d’acteur : photos, bio, liens vers films et réseaux." />
+  <meta property="og:title" content="Votre Nom — Acteur">
+  <meta property="og:description" content="Photos, bio, showreel et liens vers mes films.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://placehold.co/1200x630/jpg?text=Votre+Nom+Acteur">
+  <meta name="theme-color" content="#0b0c10">
+  <style>
+    :root{
+      --bg:#0b0c10; --card:#111319; --text:#e8eaf0; --muted:#aab1c6; --accent:#7cc7ff; --accent2:#ffd36b; --border:#1c2130; --radius:16px; --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    /* THEMES */
+    body.theme-noir{--bg:#0b0c10;--card:#111319;--text:#e8eaf0;--muted:#aab1c6;--accent:#7cc7ff;--accent2:#ffd36b;--border:#1c2130;--radius:16px}
+    body.theme-clair{--bg:#f7f7f9;--card:#ffffff;--text:#101319;--muted:#5b6270;--accent:#0047ff;--accent2:#00c2a8;--border:#e6e8ef;--radius:14px}
+    body.theme-mag{--bg:#fffaf5;--card:#ffffff;--text:#19120f;--muted:#6b5f58;--accent:#e14c2a;--accent2:#222;--border:#f0e5da;--radius:12px;--font: 'Playfair Display', ui-serif, Georgia, serif}
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family: var(--font);background:var(--bg);color:var(--text)}
+    a{color:var(--accent);text-decoration:none}
+    img{max-width:100%;display:block;border-radius:var(--radius)}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    /* NAV */
+    .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:rgba(11,12,16,.75);border-bottom:1px solid var(--border);z-index:50}
+    .nav-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .pill{border:1px solid var(--border);padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0));}
+    .nav a{font-weight:600;opacity:.9}
+    .theme-switch{display:flex;gap:8px;align-items:center}
+    .swatch{border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:12px;background:var(--card)}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:36px 24px}
+    .hero h1{font-size:clamp(34px,5vw,56px);line-height:1.05;margin:0 0 8px}
+    .hero p{color:var(--muted);font-size:18px;margin:0 0 16px}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+    .badge{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:999px;font-size:14px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+    .btn{border:1px solid var(--border);background:var(--card);padding:12px 16px;border-radius:12px;font-weight:700;display:inline-flex;gap:10px;align-items:center}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent2));color:#0a0e17;border:none}
+
+    /* SECTIONS & CARDS */
+    .section{padding:8px 24px;margin:24px auto}
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+    .grid-2 .card{grid-column:span 6}
+    .grid-3 .card{grid-column:span 4}
+    .section h2{margin:8px 0 12px;font-size:clamp(22px,3.6vw,32px)}
+    .muted{color:var(--muted)}
+
+    /* GALLERY masonry */
+    .gallery{columns:3 280px;column-gap:14px}
+    .gallery figure{break-inside:avoid;margin:0 0 14px}
+
+    /* FILM ITEMS */
+    .film{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
+    .film img{height:120px;object-fit:cover}
+    .film .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+    /* GRID HELPERS */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .span-4{grid-column:span 4}
+    .span-8{grid-column:span 8}
+
+    /* CONTACT */
+    .contact-list{display:grid;gap:10px}
+    .contact-item{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--border);background:var(--card);padding:12px 14px;border-radius:12px}
+    .tag{font-size:12px;color:#0b0c10;background:var(--accent);padding:4px 8px;border-radius:999px;font-weight:700}
+
+    footer{padding:40px 24px;border-top:1px solid var(--border);color:var(--muted);text-align:center}
+
+    /* FULL-BLEED BANNER */
+    .banner{position:relative;display:block;width:100%;height:42vw;max-height:520px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+    .banner img{width:100%;height:100%;object-fit:cover}
+    .banner .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.6))}
+    .banner .title{position:absolute;left:24px;bottom:20px;font-size:clamp(24px,4.5vw,44px);font-weight:800}
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid-2 .card, .grid-3 .card, .span-4, .span-8{grid-column:span 12}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner container">
+      <div class="brand">
+        <span class="pill">🎬</span>
+        <span>Votre Nom — Acteur</span>
+      </div>
+      <div class="links">
+        <a href="#photos">Photos</a>
+        <span class="pill"></span>
+        <a href="#bio">Bio</a>
+        <span class="pill"></span>
+        <a href="#films">Films</a>
+        <span class="pill"></span>
+        <a href="#contact">Contact</a>
+        <span class="pill"></span>
+        <span class="theme-switch">
+          <button class="swatch" data-theme="noir" title="Ciné noir">Noir</button>
+          <button class="swatch" data-theme="clair" title="Clair minimal">Clair</button>
+          <button class="swatch" data-theme="mag" title="Magazine">Mag</button>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container" itemscope itemtype="https://schema.org/Person">
+    <div>
+      <h1 itemprop="name">Votre Nom</h1>
+      <p class="muted" itemprop="jobTitle">Acteur / Comédien — FR • EN</p>
+      <div class="badges">
+        <span class="badge">Taille : 1m82</span>
+        <span class="badge">Yeux : marron</span>
+        <span class="badge">Cheveux : châtain</span>
+        <span class="badge">Permis B</span>
+        <span class="badge">Vocal : baryton</span>
+      </div>
+      <p itemprop="description">Bref texte de présentation (2‑3 lignes). Mettez ici votre style, formation, actualités ou disponibilités.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Me contacter</a>
+        <a class="btn" href="#films">Voir mes films</a>
+        <a class="btn" href="#photos">Galerie photo</a>
+      </div>
+      <meta itemprop="url" content="https://votre-site-ou-reseau" />
+    </div>
+    <div>
+      <img src="https://placehold.co/900x1200/jpg?text=Votre+portrait" alt="Portrait de Votre Nom" itemprop="image" />
+    </div>
+  </header>
+
+  <!-- Optional banner -->
+  <div class="container" style="padding-top:0">
+    <a class="banner" href="#films" aria-label="Voir mes films">
+      <img src="https://placehold.co/1600x600/jpg?text=Banniere+cinematique" alt="Bannière cinématographique" />
+      <span class="overlay"></span>
+      <span class="title">Derniers rôles & showreel</span>
+    </a>
+  </div>
+
+  <main class="container">
+    <section id="photos" class="section">
+      <h2>Galerie</h2>
+      <p class="muted">Sélection de photos professionnelles et de plateau.</p>
+      <div class="gallery">
+        <figure><img src="https://placehold.co/900x1200/jpg?text=Headshot+1" alt="Headshot 1" /></figure>
+        <figure><img src="https://placehold.co/1200x900/jpg?text=Plateau+1" alt="Plateau 1" /></figure>
+        <figure><img src="https://placehold.co/1200x900/jpg?text=Portrait+studio" alt="Portrait studio" /></figure>
+        <figure><img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+1" alt="Scène 1" /></figure>
+        <figure><img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+2" alt="Scène 2" /></figure>
+        <figure><img src="https://placehold.co/900x1200/jpg?text=Headshot+2" alt="Headshot 2" /></figure>
+      </div>
+    </section>
+
+    <section id="bio" class="section">
+      <h2>À propos</h2>
+      <div class="grid">
+        <div class="span-8">
+          <div class="card">
+            <h3>Bio courte</h3>
+            <p class="muted">Formé au Conservatoire de …, repéré dans … (année). Expérience en théâtre, cinéma, publicité. Basé à …, disponible pour déplacements internationaux.</p>
+            <div class="chips">
+              <span class="chip">Théâtre</span>
+              <span class="chip">Cinéma</span>
+              <span class="chip">TV</span>
+              <span class="chip">Pub</span>
+              <span class="chip">Voice‑over</span>
+            </div>
+          </div>
+        </div>
+        <div class="span-4">
+          <div class="card">
+            <h3>Mes mensurations</h3>
+            <ul class="muted" style="margin:0;padding-left:18px;line-height:1.9">
+              <li>Taille : 182 cm</li>
+              <li>Poids : 75 kg</li>
+              <li>Pointure : 43</li>
+              <li>Veste : 50</li>
+              <li>Pantalon : 42</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="films" class="section">
+      <h2>Films & showreel</h2>
+      <div class="cards grid-2">
+        <article class="card film">
+          <img src="https://placehold.co/300x450/jpg?text=Affiche+film" alt="Affiche film" />
+          <div>
+            <h3 style="margin:0 0 6px">Titre du film (2024)</h3>
+            <div class="meta">
+              <span class="badge">Rôle : principal</span>
+              <span class="badge">Réalisateur : Nom</span>
+              <span class="badge">Genre : Drame</span>
+            </div>
+            <p class="muted" style="margin:8px 0 10px">Pitch en une phrase. Festivals, prix, plateformes.</p>
+            <div class="cta">
+              <a class="btn" href="https://lien-vers-bande-annonce" target="_blank" rel="noopener">Bande‑annonce</a>
+              <a class="btn" href="https://lien‑vers‑plateforme/film" target="_blank" rel="noopener">Voir le film</a>
+            </div>
+          </div>
+        </article>
+        <article class="card film">
+          <img src="https://placehold.co/300x450/jpg?text=Affiche+film" alt="Affiche film" />
+          <div>
+            <h3 style="margin:0 0 6px">Court‑métrage – Titre (2023)</h3>
+            <div class="meta">
+              <span class="badge">Rôle : second</span>
+              <span class="badge">Réalisateur : Nom</span>
+              <span class="badge">Sélection : XYZ</span>
+            </div>
+            <p class="muted" style="margin:8px 0 10px">Description rapide et liens.</p>
+            <div class="cta">
+              <a class="btn" href="https://lien-imdb-ou-allocine" target="_blank" rel="noopener">IMDb / AlloCiné</a>
+              <a class="btn" href="https://lien-showreel" target="_blank" rel="noopener">Showreel</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="span-4">
+          <div class="card contact-list">
+            <div class="contact-item">
+              <div>
+                <strong>Email</strong><br>
+                <span class="muted">votre.email@example.com</span>
+              </div>
+              <span class="tag">pro</span>
+            </div>
+            <div class="contact-item">
+              <div>
+                <strong>Téléphone</strong><br>
+                <span class="muted">+33 6 12 34 56 78</span>
+              </div>
+              <span class="tag">direct</span>
+            </div>
+            <div class="contact-item">
+              <div>
+                <strong>Agent</strong><br>
+                <span class="muted">Nom de l’agence</span>
+              </div>
+              <span class="tag">booking</span>
+            </div>
+          </div>
+        </div>
+        <div class="span-8">
+          <div class="card">
+            <h3>Réseaux & profils</h3>
+            <div class="cta">
+              <a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+              <a class="btn" href="https://vimeo.com/" target="_blank" rel="noopener">Vimeo</a>
+              <a class="btn" href="https://www.imdb.com/" target="_blank" rel="noopener">IMDb</a>
+              <a class="btn" href="https://www.allocine.fr/" target="_blank" rel="noopener">AlloCiné</a>
+              <a class="btn" href="#" download>Télécharger mon CV (PDF)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Votre Nom — Tous droits réservés.
+  </footer>
+
+  <script>
+    // Année dynamique
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Gestion de thème (mémoire locale)
+    (function(){
+      const root = document.body;
+      const saved = localStorage.getItem('pf-theme');
+      const setTheme = (key) => {
+        root.classList.remove('theme-noir','theme-clair','theme-mag');
+        root.classList.add('theme-' + key);
+        localStorage.setItem('pf-theme', key);
+      };
+      if(saved){ setTheme(saved); } else { setTheme('noir'); }
+      document.querySelectorAll('.swatch').forEach(btn => btn.addEventListener('click', ()=> setTheme(btn.dataset.theme)));
+    })();
+  </script>
+</body>
+</html>
