@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Porte‑folio d’acteur – VELLOZZI Mathieu</title>
+  <title>Porte‑folio d’acteur – Votre Nom</title>
   <meta name="description" content="Portfolio d’acteur : photos, bio, liens vers films et réseaux." />
-  <meta property="og:title" content="VELLOZZI Mathieu — Acteur">
-  <meta property="og:description" content="Photos, bio, showreel et liens vers mes films.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://placehold.co/1200x630/jpg?text=Votre+Nom+Acteur">
-  <meta name="theme-color" content="#0b0c10">
+  <!-- Version simplifiée compatible avec l'intégration Google Sites (sans JavaScript, effets avancés limités) -->
   <style>
     :root{
-      --bg:#0b0c10; --card:#111319; --text:#e8eaf0; --muted:#aab1c6; --accent:#7cc7ff; --accent2:#ffd36b; --border:#1c2130; --radius:16px; --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --bg:#0b0c10; --card:#111319; --text:#e8eaf0; --muted:#aab1c6; --accent:#7cc7ff; --accent2:#ffd36b; --border:#1c2130; --radius:16px; --font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
-    /* THEMES */
-    body.theme-noir{--bg:#0b0c10;--card:#111319;--text:#e8eaf0;--muted:#aab1c6;--accent:#7cc7ff;--accent2:#ffd36b;--border:#1c2130;--radius:16px}
-    body.theme-clair{--bg:#f7f7f9;--card:#ffffff;--text:#101319;--muted:#5b6270;--accent:#0047ff;--accent2:#00c2a8;--border:#e6e8ef;--radius:14px}
-    body.theme-mag{--bg:#fffaf5;--card:#ffffff;--text:#19120f;--muted:#6b5f58;--accent:#e14c2a;--accent2:#222;--border:#f0e5da;--radius:12px;--font: 'Playfair Display', ui-serif, Georgia, serif}
+    /* THEME: CINÉ NOIR (par défaut) */
+    body.theme-noir{--bg:#0b0c10;--card:#111319;--text:#e8eaf0;--muted:#aab1c6;--accent:#7cc7ff;--accent2:#ffd36b;--border:#1c2130;--radius:16px;--font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    /* THEME: CLAIR MINIMAL */
+    body.theme-clair{--bg:#f7f7f9;--card:#ffffff;--text:#101319;--muted:#5b6270;--accent:#0047ff;--accent2:#00c2a8;--border:#e6e8ef;--radius:14px;--font: Inter, ui-sans-serif, system-ui}
+    /* THEME: MAGAZINE (sérif + bicolore) */
+    body.theme-mag{--bg:#fffaf5;--card:#ffffff;--text:#19120f;--muted:#6b5f58;--accent:#e14c2a;--accent2:#222;--border:#f0e5da;--radius:12px;--font: "Playfair Display", ui-serif, Georgia, serif}
+
+    @media (prefers-color-scheme: light){ body:not(.theme-noir):not(.theme-mag):not(.theme-clair){background:#f7f7f9;color:#101319} }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -27,12 +27,12 @@
     .container{max-width:1100px;margin:0 auto;padding:24px}
 
     /* NAV */
-    .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:rgba(11,12,16,.75);border-bottom:1px solid var(--border);z-index:50}
+    .nav{position:sticky;top:0;z-index:999;background:#111319;border-bottom:1px solid #1c2130}
     .nav-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:700}
     .pill{border:1px solid var(--border);padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0));}
     .nav a{font-weight:600;opacity:.9}
-    .theme-switch{display:flex;gap:8px;align-items:center}
+    /* theme switch retiré pour compat Google Sites */
     .swatch{border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:12px;background:var(--card)}
 
     /* HERO */
@@ -43,7 +43,7 @@
     .badge{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:999px;font-size:14px}
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
     .btn{border:1px solid var(--border);background:var(--card);padding:12px 16px;border-radius:12px;font-weight:700;display:inline-flex;gap:10px;align-items:center}
-    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent2));color:#0a0e17;border:none}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent2));color:#fff;border:none}
 
     /* SECTIONS & CARDS */
     .section{padding:8px 24px;margin:24px auto}
@@ -54,8 +54,12 @@
     .section h2{margin:8px 0 12px;font-size:clamp(22px,3.6vw,32px)}
     .muted{color:var(--muted)}
 
-    /* GALLERY masonry */
+    /* GALLERY (masonry-like responsive) */
+    /* GALLERY (masonry-like responsive) */
     .gallery{columns:3 280px;column-gap:14px}
+    .gallery figure{break-inside:avoid;margin:0 0 14px}
+    .gallery img{cursor:zoom-in}
+    .gallery figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
     .gallery figure{break-inside:avoid;margin:0 0 14px}
 
     /* FILM ITEMS */
@@ -63,7 +67,15 @@
     .film img{height:120px;object-fit:cover}
     .film .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 
-    /* GRID HELPERS */
+    /* LIGHTBOX POUR PHOTOS */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:1000;padding:16px}
+    .lightbox:target{opacity:1;pointer-events:auto}
+    .lightbox-content{max-width:900px;width:100%;max-height:90vh;overflow:auto;background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:16px}
+    .lightbox-content img{max-height:70vh;margin:0 auto 12px}
+    .lightbox-close{display:inline-block;margin-bottom:8px;font-size:14px;color:var(--muted);text-decoration:none}
+    .lightbox-close:hover{color:var(--accent)}
+
+    /* GRID HELPERS */ */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .span-4{grid-column:span 4}
     .span-8{grid-column:span 8}
@@ -75,7 +87,7 @@
 
     footer{padding:40px 24px;border-top:1px solid var(--border);color:var(--muted);text-align:center}
 
-    /* FULL-BLEED BANNER */
+    /* FULL-BLEED BANNER OPTION */
     .banner{position:relative;display:block;width:100%;height:42vw;max-height:520px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
     .banner img{width:100%;height:100%;object-fit:cover}
     .banner .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.6))}
@@ -88,37 +100,34 @@
   </style>
 </head>
 <body>
-  <nav class="nav">
+  <nav class="nav" style="position:sticky;top:0;z-index:999">
     <div class="nav-inner container">
       <div class="brand">
         <span class="pill">🎬</span>
-        <span>VELLOZZI Mathieu — Acteur</span>
+        <span>Mathieu VELLOZZI — Acteur</span>
       </div>
       <div class="links">
-        <a href="#photos">Photos</a>
-        <span class="pill"></span>
-        <a href="#bio">Bio</a>
-        <span class="pill"></span>
-        <a href="#films">Films</a>
-        <span class="pill"></span>
-        <a href="#contact">Contact</a>
-        <span class="pill"></span>
+        <a class="pill" href="#photos">Photos</a>
+        <a class="pill" href="#bio">Bio</a>
+        <a class="pill" href="#films">Films</a>
+        <a class="pill" href="#contact">Contact</a>
       </div>
     </div>
   </nav>
 
   <header class="hero container" itemscope itemtype="https://schema.org/Person">
     <div>
-      <h1 itemprop="name">Votre Nom</h1>
-      <p class="muted" itemprop="jobTitle">Acteur / Comédien — FR • EN</p>
+      <h1 itemprop="name">Mathieu VELLOZZI</h1>
+      <p class="muted" itemprop="jobTitle">Acteur / Comédien — FR</p>
       <div class="badges">
-        <span class="badge">Taille : 1m82</span>
-        <span class="badge">Yeux : marron</span>
+        <span class="badge">Âge : 20 ans</span>
+        <span class="badge">Taille : 1m70</span>
+        <span class="badge">Yeux : vert</span>
         <span class="badge">Cheveux : châtain</span>
-        <span class="badge">Permis B</span>
-        <span class="badge">Vocal : baryton</span>
+        <span class="badge">Coupe : court</span>
+        <span class="badge">Poids : 80 kg</span>
       </div>
-      <p itemprop="description">Bref texte de présentation (2‑3 lignes). Mettez ici votre style, formation, actualités ou disponibilités.</p>
+      <p itemprop="description">Bonjour, je m'appelle Mathieu VELLOZZI. Je suis passionné par le 7ᵉ art depuis plusieurs années maintenant. J'ai fait 2 ans de théâtre au lycée et j'ai tourné plusieurs courts-métrages.</p>
       <div class="cta">
         <a class="btn primary" href="#contact">Me contacter</a>
         <a class="btn" href="#films">Voir mes films</a>
@@ -127,40 +136,96 @@
       <meta itemprop="url" content="https://votre-site-ou-reseau" />
     </div>
     <div>
+      <!-- Photo portrait principale -->
       <img src="https://placehold.co/900x1200/jpg?text=Votre+portrait" alt="Portrait de Votre Nom" itemprop="image" />
     </div>
-  </header>
-
-  <!-- Optional banner -->
-  <div class="container" style="padding-top:0">
-    <a class="banner" href="#films" aria-label="Voir mes films">
-      <img src="https://placehold.co/1600x600/jpg?text=Banniere+cinematique" alt="Bannière cinématographique" />
-      <span class="overlay"></span>
-      <span class="title">Derniers rôles & showreel</span>
-    </a>
-  </div>
+    </header>
 
   <main class="container">
+    <!-- PHOTOS -->
     <section id="photos" class="section">
       <h2>Galerie</h2>
-      <p class="muted">Sélection de photos professionnelles et de plateau.</p>
+      <p class="muted">Sélection de photos professionnelles et de plateau. Cliquez pour agrandir (clic droit &gt; ouvrir l’image dans un nouvel onglet).</p>
       <div class="gallery">
-        <figure><img src="https://placehold.co/900x1200/jpg?text=Headshot+1" alt="Headshot 1" /></figure>
-        <figure><img src="https://placehold.co/1200x900/jpg?text=Plateau+1" alt="Plateau 1" /></figure>
-        <figure><img src="https://placehold.co/1200x900/jpg?text=Portrait+studio" alt="Portrait studio" /></figure>
-        <figure><img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+1" alt="Scène 1" /></figure>
-        <figure><img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+2" alt="Scène 2" /></figure>
-        <figure><img src="https://placehold.co/900x1200/jpg?text=Headshot+2" alt="Headshot 2" /></figure>
+        <figure>
+          <a href="#photo1"><img src="https://placehold.co/900x1200/jpg?text=Headshot+1" alt="Headshot 1" /></a>
+          <figcaption>Headshot studio – expression neutre.</figcaption>
+        </figure>
+        <figure>
+          <a href="#photo2"><img src="https://placehold.co/1200x900/jpg?text=Plateau+1" alt="Plateau 1" /></a>
+          <figcaption>Photo de plateau – tournage en extérieur.</figcaption>
+        </figure>
+        <figure>
+          <a href="#photo3"><img src="https://placehold.co/1200x900/jpg?text=Portrait+studio" alt="Portrait studio" /></a>
+          <figcaption>Portrait studio – lumière dramatique.</figcaption>
+        </figure>
+        <figure>
+          <a href="#photo4"><img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+1" alt="Scène 1" /></a>
+          <figcaption>Scène 1 – personnage intense.</figcaption>
+        </figure>
+        <figure>
+          <a href="#photo5"><img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+2" alt="Scène 2" /></a>
+          <figcaption>Scène 2 – jeu comique.</figcaption>
+        </figure>
+        <figure>
+          <a href="#photo6"><img src="https://placehold.co/900x1200/jpg?text=Headshot+2" alt="Headshot 2" /></a>
+          <figcaption>Headshot – profil différent.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Lightbox pleine page pour chaque photo -->
+      <div id="photo1" class="lightbox">
+        <div class="lightbox-content">
+          <a href="#photos" class="lightbox-close">✕ Fermer</a>
+          <img src="https://placehold.co/900x1200/jpg?text=Headshot+1" alt="Headshot 1" />
+          <p class="muted">Headshot studio en haute résolution. Idéal pour casting et dossiers professionnels.</p>
+        </div>
+      </div>
+      <div id="photo2" class="lightbox">
+        <div class="lightbox-content">
+          <a href="#photos" class="lightbox-close">✕ Fermer</a>
+          <img src="https://placehold.co/1200x900/jpg?text=Plateau+1" alt="Plateau 1" />
+          <p class="muted">Photo de tournage sur plateau. Montre le rendu en situation réelle.</p>
+        </div>
+      </div>
+      <div id="photo3" class="lightbox">
+        <div class="lightbox-content">
+          <a href="#photos" class="lightbox-close">✕ Fermer</a>
+          <img src="https://placehold.co/1200x900/jpg?text=Portrait+studio" alt="Portrait studio" />
+          <p class="muted">Portrait studio avec lumière travaillée, adapté aux books d’agent.</p>
+        </div>
+      </div>
+      <div id="photo4" class="lightbox">
+        <div class="lightbox-content">
+          <a href="#photos" class="lightbox-close">✕ Fermer</a>
+          <img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+1" alt="Scène 1" />
+          <p class="muted">Capture d’une scène dramatique illustrant votre jeu émotionnel.</p>
+        </div>
+      </div>
+      <div id="photo5" class="lightbox">
+        <div class="lightbox-content">
+          <a href="#photos" class="lightbox-close">✕ Fermer</a>
+          <img src="https://placehold.co/1200x900/jpg?text=Sc%C3%A8ne+2" alt="Scène 2" />
+          <p class="muted">Scène plus légère, pour montrer votre versant comédie.</p>
+        </div>
+      </div>
+      <div id="photo6" class="lightbox">
+        <div class="lightbox-content">
+          <a href="#photos" class="lightbox-close">✕ Fermer</a>
+          <img src="https://placehold.co/900x1200/jpg?text=Headshot+2" alt="Headshot 2" />
+          <p class="muted">Deuxième headshot, angle et expression différents pour varier les propositions.</p>
+        </div>
       </div>
     </section>
 
+    <!-- BIO / INFOS -->
     <section id="bio" class="section">
       <h2>À propos</h2>
       <div class="grid">
         <div class="span-8">
           <div class="card">
             <h3>Bio courte</h3>
-            <p class="muted">Formé au Conservatoire de …, repéré dans … (année). Expérience en théâtre, cinéma, publicité. Basé à …, disponible pour déplacements internationaux.</p>
+            <p class="muted">Basé à Lyon, Mathieu VELLOZZI découvre sa passion pour le cinéma dès le collège lors de son premier court‑métrage, qu’il crée entièrement avec son groupe. À cette occasion, il interprète un jeune personnage rebelle et réalise qu’il est naturellement à l’aise devant la caméra. Au lycée, il poursuit deux années de théâtre où il développe un véritable goût pour la transmission d’émotions au public. Après ses études, il enchaîne deux courts‑métrages en tant que premier rôle : l’un dans un registre comique‑fantastique, l’autre dans un rôle plus posé de directeur de casting. Motivé par l’envie d’apprendre, de progresser, de vivre des expériences humaines et de raconter des histoires fortes, Mathieu reste ouvert à tous types de rôles et aime explorer des univers variés.</p>
             <div class="chips">
               <span class="chip">Théâtre</span>
               <span class="chip">Cinéma</span>
@@ -174,17 +239,20 @@
           <div class="card">
             <h3>Mes mensurations</h3>
             <ul class="muted" style="margin:0;padding-left:18px;line-height:1.9">
-              <li>Taille : 182 cm</li>
-              <li>Poids : 75 kg</li>
+              <li>Taille : 170 cm</li>
+              <li>Poids : 80 kg</li>
+              <li>Yeux : vert</li>
+              <li>Cheveux : châtain (court)</li>
               <li>Pointure : 43</li>
-              <li>Veste : 50</li>
-              <li>Pantalon : 42</li>
+              <li>Vêtements : M à L</li>
+              <li>Physique : sportif avec une légère masse</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- FILMS / LIENS -->
     <section id="films" class="section">
       <h2>Films & showreel</h2>
       <div class="cards grid-2">
@@ -193,9 +261,9 @@
           <div>
             <h3 style="margin:0 0 6px">Titre du film (2024)</h3>
             <div class="meta">
-              <span class="badge">Rôle : principal</span>
-              <span class="badge">Réalisateur : Nom</span>
-              <span class="badge">Genre : Drame</span>
+              <span class="badge">Rôle : principal</span>
+              <span class="badge">Réalisateur : Nom</span>
+              <span class="badge">Genre : Drame</span>
             </div>
             <p class="muted" style="margin:8px 0 10px">Pitch en une phrase. Festivals, prix, plateformes.</p>
             <div class="cta">
@@ -209,9 +277,9 @@
           <div>
             <h3 style="margin:0 0 6px">Court‑métrage – Titre (2023)</h3>
             <div class="meta">
-              <span class="badge">Rôle : second</span>
-              <span class="badge">Réalisateur : Nom</span>
-              <span class="badge">Sélection : XYZ</span>
+              <span class="badge">Rôle : second</span>
+              <span class="badge">Réalisateur : Nom</span>
+              <span class="badge">Sélection : XYZ</span>
             </div>
             <p class="muted" style="margin:8px 0 10px">Description rapide et liens.</p>
             <div class="cta">
@@ -223,6 +291,7 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="section">
       <h2>Contact</h2>
       <div class="grid">
@@ -269,25 +338,9 @@
   </main>
 
   <footer>
-    © <span id="year"></span> Votre Nom — Tous droits réservés.
+    © Mathieu VELLOZZI — Tous droits réservés.
   </footer>
 
-  <script>
-    // Année dynamique
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Gestion de thème (mémoire locale)
-    (function(){
-      const root = document.body;
-      const saved = localStorage.getItem('pf-theme');
-      const setTheme = (key) => {
-        root.classList.remove('theme-noir','theme-clair','theme-mag');
-        root.classList.add('theme-' + key);
-        localStorage.setItem('pf-theme', key);
-      };
-      if(saved){ setTheme(saved); } else { setTheme('noir'); }
-      document.querySelectorAll('.swatch').forEach(btn => btn.addEventListener('click', ()=> setTheme(btn.dataset.theme)));
-    })();
-  </script>
+  
 </body>
 </html>
